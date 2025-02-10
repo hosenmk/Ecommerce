@@ -26,3 +26,13 @@ dataset_ecommerce = fact_table.merge(trans_dim, on='trans_key', how='left') \
                 .merge(store_dim, on='store_key', how='left')
 
 dataset_ecommerce
+
+dataset_ecommerce.head()
+
+dataset_ecommerce.columns
+
+dataset_ecommerce.info()
+
+dataset_ecommerce.describe()
+
+
