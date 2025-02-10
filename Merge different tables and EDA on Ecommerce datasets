@@ -1,0 +1,28 @@
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+
+1. Data Loading and Preprocessing
+# Mount dataset
+from google.colab import drive
+drive.mount('/content/drive')
+dataset_ecommerce = '/content/drive/MyDrive/project/ecommerce.xlsx'
+
+fact_table = pd.read_excel(dataset_ecommerce, sheet_name='Fact_table')
+trans_dim = pd.read_excel(dataset_ecommerce, sheet_name='Trans_dim')
+item_dim = pd.read_excel(dataset_ecommerce, sheet_name='Item_dim')
+customer_dim = pd.read_excel(dataset_ecommerce, sheet_name='Customer_dim')
+time_dim = pd.read_excel(dataset_ecommerce, sheet_name='Time_dim')
+store_dim = pd.read_excel(dataset_ecommerce, sheet_name='Store_dim')
+
+# Marged all tables
+dataset_ecommerce = fact_table.merge(trans_dim, on='trans_key', how='left') \
+                .merge(item_dim, on='item_key', how='left') \
+                .merge(customer_dim, on='customer_key', how='left') \
+                .merge(time_dim, on='time_key', how='left') \
+                .merge(store_dim, on='store_key', how='left')
+
+dataset_ecommerce
