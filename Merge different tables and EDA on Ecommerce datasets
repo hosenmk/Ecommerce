@@ -26,13 +26,37 @@ dataset_ecommerce = fact_table.merge(trans_dim, on='trans_key', how='left') \
                 .merge(store_dim, on='store_key', how='left')
 
 dataset_ecommerce
-
 dataset_ecommerce.head()
-
 dataset_ecommerce.columns
-
 dataset_ecommerce.info()
-
 dataset_ecommerce.describe()
+
+# Slicing of Datasets
+# slicing rows and columns
+# rows_indexes, column_indexes
+dataset_ecommerce.loc[:,:]
+
+# selecting columns as list
+dataset_ecommerce.loc[:,'trans_type':'hour']
+
+# selecting columns as list
+dataset_ecommerce.loc[:,'store_size':'division_y']
+
+# selecting columns as list
+dataset_ecommerce.loc[5:20,['store_size', 'trans_type']]
+
+# Convert categorical to numerical using a dictionary mapping
+dataset_ecommerce['trans_type'] = dataset_ecommerce['trans_type'].map({'cash': 1, 'card': 2, 'mobile': 3})
+dataset_ecommerce['store_size'] = dataset_ecommerce['store_size'].map({'high': 1, 'medium': 2, 'small': 3})
+
+# if i want to drop rowwise
+# Rowwise drop : axis = 0
+# A = dataset_ecommerce.drop([0, 2, 4, 6, 8, 10, 12], axis = 0)
+
+# But i will drop column wise
+# Column wise drop : axis = 1
+ecommerce = dataset_ecommerce.drop(['unit_x','bank_name','item_name','desc','man_country','upazila_x','upazila_y','supplier','unit_y','week','name','district_x','division_x','district_y','division_y'], axis = 1)
+ecommerce
+
 
 
