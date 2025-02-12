@@ -58,5 +58,23 @@ dataset_ecommerce['store_size'] = dataset_ecommerce['store_size'].map({'high': 1
 ecommerce = dataset_ecommerce.drop(['unit_x','bank_name','item_name','desc','man_country','upazila_x','upazila_y','supplier','unit_y','week','name','district_x','division_x','district_y','division_y'], axis = 1)
 ecommerce
 
+# Check missing value
+ecommerce.isnull()
+
+# Check for duplicate rows in Ecommerce
+duplicate_rows_ecommerce = ecommerce[ecommerce.duplicated()]
+print("Duplicate Rows in Ecommerce dataset:")
+print(duplicate_rows_ecommerce)
+
+# Check for duplicate columns in Ecommerce dataset (by checking if column names are duplicated)
+duplicate_cols_ecommerce = ecommerce.columns[ecommerce.columns.duplicated()]
+print("\nDuplicate Columns in ecommerce dataset:")
+duplicate_cols_ecommerce
+
+ecommerce.drop_duplicates(inplace=True)  # Removing duplicate rows
+
+df2 = ecommerce
+df2
+
 
 
