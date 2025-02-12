@@ -107,4 +107,23 @@ for column in df2.columns:
     print(f"Skipping KDE plot for '{column}' as it is not numeric.")
 
 
+# Identify correlations: Use a heatmap to display relationships between variables of df2 (Ecommerce)
+# Select only numeric columns for correlation calculation
+numeric_df2 = df2.select_dtypes(include=np.number)
+
+plt.figure(figsize=(12, 10))
+sns.heatmap(numeric_df2.corr(), annot=True, cmap='coolwarm', fmt=".2f")
+plt.title('Correlation Matrix of Ecommerce')
+plt.show()
+
+# Identify outliers using scatter plots for df2
+for col1 in df2.columns:
+    for col2 in df2.columns:
+        if col1 != col2 and pd.api.types.is_numeric_dtype(df2[col1]) and pd.api.types.is_numeric_dtype(df2[col2]):
+            plt.figure(figsize=(8, 6))
+            plt.scatter(df2[col1], df2[col2])
+            plt.xlabel(col1)
+            plt.ylabel(col2)
+            plt.title(f"Scatter Plot of {col1} vs {col2} (df2)")
+            plt.show()
 
