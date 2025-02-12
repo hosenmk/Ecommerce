@@ -76,5 +76,35 @@ ecommerce.drop_duplicates(inplace=True)  # Removing duplicate rows
 df2 = ecommerce
 df2
 
+# Exploratory Data Analysis (EDA)
+# Calculate mean, median, mode, standard deviation, and skewness for df2
+print("\ndf2 Statistics:")
+print("Mean:\n", df2.mean(numeric_only=True))
+print("\nMedian:\n", df2.median(numeric_only=True))
+print("\nMode:\n", df2.mode().iloc[0])  # Mode can have multiple values, so we take the first one
+print("\nStandard Deviation:\n", df2.std(numeric_only=True))
+print("\nSkewness:\n", df2.skew(numeric_only=True))
+
+# Visualize distributions using histograms, boxplots, and KDE plots for df2 (Ecommerce)
+
+# Histograms
+df2.hist(figsize=(12, 10), bins=20)
+plt.suptitle("Histograms of Boston Features", fontsize=16)
+plt.show()
+
+# Boxplots
+df2.plot(kind='box', subplots=True, layout=(4, 5), figsize=(15, 10), sharex=False, sharey=False)
+plt.suptitle("Boxplots of Boston Features", fontsize=16)
+plt.show()
+
+# KDE plots
+for column in df2.columns:
+  if pd.api.types.is_numeric_dtype(df2[column]): # Check if the column is numeric
+    sns.kdeplot(df2[column])
+    plt.title(f'KDE Plot of {column}')
+    plt.show()
+  else:
+    print(f"Skipping KDE plot for '{column}' as it is not numeric.")
+
 
 
