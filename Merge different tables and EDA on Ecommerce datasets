@@ -107,7 +107,7 @@ for column in df2.columns:
     print(f"Skipping KDE plot for '{column}' as it is not numeric.")
 
 
-# Identify correlations: Use a heatmap to display relationships between variables of df2 (Ecommerce)
+# Identify correlations: Use a heatmap to display relationships between variables 
 # Select only numeric columns for correlation calculation
 numeric_df2 = df2.select_dtypes(include=np.number)
 
@@ -126,4 +126,32 @@ for col1 in df2.columns:
             plt.ylabel(col2)
             plt.title(f"Scatter Plot of {col1} vs {col2} (df2)")
             plt.show()
+
+# Univariate Analysis
+# Bar chats
+for column in df2.columns:
+  if pd.api.types.is_numeric_dtype(df2[column]):
+    plt.figure(figsize=(8, 6))
+    plt.bar(df2.index, df2[column])
+    plt.xlabel("Index")
+    plt.ylabel(column)
+    plt.title(f"Bar Chart of {column}")
+    plt.show()
+
+# Univariate analysis for df2
+# Pie charts
+for column in df2.columns:
+  if pd.api.types.is_numeric_dtype(df2[column]):
+    # Calculate value counts for each unique value
+    value_counts = df2[column].value_counts()
+
+  # Create a pie chart
+  plt.figure(figsize=(8, 6))
+  plt.pie(value_counts, labels=value_counts.index, autopct='%1.1f%%', startangle=90)
+  plt.title(f"Pie Chart of {column}")
+  plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+  plt.show()
+  else:
+  print(f"Skipping pie chart for '{column}' as it's not numeric.")
+
 
