@@ -77,7 +77,7 @@ df2 = ecommerce
 df2
 
 # Exploratory Data Analysis (EDA)
-# Calculate mean, median, mode, standard deviation, and skewness for df2
+# Calculate mean, median, mode, standard deviation, and skewness
 print("\ndf2 Statistics:")
 print("Mean:\n", df2.mean(numeric_only=True))
 print("\nMedian:\n", df2.median(numeric_only=True))
@@ -85,7 +85,7 @@ print("\nMode:\n", df2.mode().iloc[0])  # Mode can have multiple values, so we t
 print("\nStandard Deviation:\n", df2.std(numeric_only=True))
 print("\nSkewness:\n", df2.skew(numeric_only=True))
 
-# Visualize distributions using histograms, boxplots, and KDE plots for df2 (Ecommerce)
+# Visualize distributions using histograms, boxplots, and KDE plots
 
 # Histograms
 df2.hist(figsize=(12, 10), bins=20)
@@ -116,7 +116,7 @@ sns.heatmap(numeric_df2.corr(), annot=True, cmap='coolwarm', fmt=".2f")
 plt.title('Correlation Matrix of Ecommerce')
 plt.show()
 
-# Identify outliers using scatter plots for df2
+# Identify outliers using scatter plots
 for col1 in df2.columns:
     for col2 in df2.columns:
         if col1 != col2 and pd.api.types.is_numeric_dtype(df2[col1]) and pd.api.types.is_numeric_dtype(df2[col2]):
