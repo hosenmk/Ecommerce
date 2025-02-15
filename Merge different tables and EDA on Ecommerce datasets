@@ -153,5 +153,3 @@ for column in df2.columns:
   plt.show()
   else:
   print(f"Skipping pie chart for '{column}' as it's not numeric.")
-
-
